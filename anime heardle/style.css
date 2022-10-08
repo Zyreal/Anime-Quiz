@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto-Sans');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto-sans', sans-serif;
+  background-color: #121212;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0;
+}
+
+.nav-bar {
+  text-align: center;
+  width: 100%;
+  border: 0px solid white;
+  border-bottom-width: 1px;
+}
+
+.nav-list {
+  list-style: none;
+}
+
+.nav-list li {
+  color:white;
+  display: inline;
+  padding: 100px;
+}
+
+.nav-list li button {
+  width: 35px;
+  height: 35px;
+  border-radius: 70%;
+  border-color: white;
+  color: white;
+  background-color: #121212;
+}
+
+.guess {
+  border: 1px solid gray;
+}
+
+.guess-list {
+  list-style: none;
+  width: 45%;
+  margin: auto;
+  border: 1px solid pink;
+}
+
+.guess-list li {
+  margin: 10px;
+  height: 40px;
+  padding-left: 30px;
+  font-size: 20px;
+  align-items: center;
+  vertical-align: middle;
+  color: white;
+  border: 1px solid red;
+}
+
+.loading {
+  height: 20px;
+  width: 100%;
+  left: 0px;
+  right: 0px;
+  border: 0px solid white;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  position: relative;
+}
+
+.play-time {
+  border: 10px solid green;
+  bottom: 0px;
+  vertical-align: bottom;
+}
+
+.play {
+  height: 50px;
+  width: 100%;
+  background-color: blue;
+  position: relative;
+}
