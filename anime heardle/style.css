@@ -8,56 +8,75 @@ body {
   font-family: 'Noto-sans', sans-serif;
   background-color: #121212;
   justify-content: center;
+  height: 100vh;
   overflow: hidden;
   margin: 0;
+  position: relative;
 }
 
-.nav-bar {
+.title-head {
   text-align: center;
   width: 100%;
-  border: 0px solid white;
+  padding: 10px;
+  border-bottom: 1px solid #888;
   border-bottom-width: 1px;
 }
 
-.nav-list {
+.head-list {
+  margin: 0px;
+  padding: 5px;
   list-style: none;
+  font-size: 25px;
 }
 
-.nav-list li {
+button {
+  cursor: pointer;
+}
+
+.head-list li {
   color:white;
   display: inline;
   padding: 100px;
 }
 
-.nav-list li button {
-  width: 35px;
-  height: 35px;
+.head-list li button {
+  width: 25px;
+  height: 25px;
   border-radius: 70%;
-  border-color: white;
+  border: 3px solid white;
   color: white;
   background-color: #121212;
 }
 
-.guess {
-  border: 1px solid gray;
-}
-
 .guess-list {
   list-style: none;
+  padding: 0px;
   width: 45%;
   margin: auto;
-  border: 1px solid pink;
+  display: list-item;
+  justify-content: center;
+  text-align: center;
 }
 
 .guess-list li {
   margin: 10px;
   height: 40px;
-  padding-left: 30px;
   font-size: 20px;
-  align-items: center;
-  vertical-align: middle;
   color: white;
-  border: 1px solid red;
+  border: 1px solid #444 ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-time {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  top: 70vh;
+  bottom: 0px;
 }
 
 .loading {
@@ -65,21 +84,79 @@ body {
   width: 100%;
   left: 0px;
   right: 0px;
-  border: 0px solid white;
-  border-top-width: 1px;
-  border-bottom-width: 1px;
+  top: 0;
+  border-top: 1px solid #888;
+  border-bottom: 1px solid #888;
   position: relative;
 }
 
-.play-time {
-  border: 10px solid green;
-  bottom: 0px;
-  vertical-align: bottom;
+.player {
+  margin-top: 10px;
+  height: 60px;
+  width: 45%;
+  color: white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid white;
+
+}
+
+.curr-time {
+  position: absolute;
+  left: 0vh;
+}
+
+.total-time {
+  position: absolute;
+  right: 0vh;
 }
 
 .play {
+  position: absolute;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 70%;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  background-color: #121212;
+  color: white;
+}
+
+.search {
+  margin-top: 10px;
+  padding-left: 20px;
+  width: 45%;
   height: 50px;
-  width: 100%;
-  background-color: blue;
+  background-color: #121212;
+  border: 1px solid #888;
+}
+
+.allBtn {
+  margin-top: 5px;
+  padding: 0px;
+  height: 45px;
   position: relative;
+  width: 45%;
+}
+
+.allBtn button {
+  width: 120px;
+  height: 40px;
+}
+
+.skip {
+  position: absolute;
+  left: -1px;
+  background-color: #444;
+  color: white;
+}
+
+.submit {
+  position: absolute;
+  right: -1px;
+  background-color: rgb(15, 222, 15);
+  color: white;
 }
