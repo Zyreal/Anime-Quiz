@@ -3,20 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, maximum-scale=1" />
+    <script src="https://kit.fontawesome.com/45b00bb612.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
     <title>Anime Heardle</title>
   </head>
   <body>
-    <div class="nav-bar">
-      <ul class="nav-list">
+    <div class="title-head">
+      <ul class="head-list">
         <li><button>i</button></li>
-        <li>HEARDLE</li>
+        <li><label>HEARDLE</label></li>
         <li><button>?</button></li>
       </ul>
     </div>
     <div class="guess">
       <ul class="guess-list">
-        <li><p>1</p></li>
+        <li><label>1</label></li>
         <li><label>2</label></li>
         <li><label>3</label></li>
         <li><label>4</label></li>
@@ -24,10 +25,20 @@
         <li><label>6</label></li>
       </ul>
     </div>
-    <div class="loading"></div>
     <div class="play-time">
-      <div class="play"></div>
-      <input type="text" class="search">
+      <div class="loading"></div>
+      <div class="player">
+        <label class="curr-time">0:00</label>
+        <button class="play">
+          <i class="fa-solid fa-play" style="font-size: 23px"></i>
+        </button>
+        <label class="total-time">0:16</label>
+      </div>
+      <input type="text" class="search" placeholder="Know it? Search for the song title">
+      <div class="allBtn">
+        <button class="skip">Skip (+1s)</button>
+        <button class="submit">Submit</button>
+      </div>
     </div>
     
     <!--<div class="container">
