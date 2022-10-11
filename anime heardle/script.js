@@ -4,6 +4,7 @@ const guesslist = document.getElementById('glist').getElementsByTagName("li")
 const loadingIndicator = document.querySelector('.loading-indicator')
 const currTime = document.querySelector('.curr-time')
 const playBtn = document.querySelector('.play')
+const fa = playBtn.querySelector('.fa-play')
 const searchbar = document.querySelector('.search-bar')
 const skipBtn = document.querySelector('.skip')
 const submitBtn = document.querySelector('.submit')
@@ -13,15 +14,39 @@ let totalTime = 1
 let addedTime = 1
 let currLoadLine = 'loadline' + (addedTime) + '.style.left'
 
+let isPlaying = false
+let startTime, stopTime
+
+const game = {currTime: null}
+
 playBtn.addEventListener('click', () => {
-    while (currTime < totalTime) {
-        let count = setInterval(counting, 30)
+    if (!isPlaying) {
+        isPlaying = true
+        fa.classList.replace("fa-play", "fa-pause")
+        const date = new Date()
+        startTime = date.getTime()
+        counting()
+    }
+    else {
+        isPlaying = false
+        fa.classList.replace("fa-pause", "fa-play")
+        const date = new Date()
+        game.end = date.getTime()
+        const totalTime = ((game.start - game.end) / 1000)
+        clearInterval(game.currTime)
+        currTime.textContent = '0:00'
     }
 })
 
 function counting (){
-    currTime.innerHTML += 1  
-    let currLoadLine = new Date()
+    let sec, milli
+    game.currTime = setInterval(() => {
+        const diff = new Date().getTime() - startTime
+        sec = parseInt(diff/1000)
+        sec = sec < 10 ? '0:0' + sec : '0:' + sec
+        console.log(diff)
+        currTime.textContent = sec
+    }  ,10)
 }
 
 skipBtn.addEventListener('click', () => {
