@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto-Sans');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
 * {
   box-sizing: border-box;
@@ -195,6 +195,25 @@ button {
   color: white;
 }
 
+/* .search-list ul{
+  position: absolute;
+  margin: auto;
+  padding: 0;
+  padding-left: 15px;
+  width: 45%;
+  height: 40px;
+  z-index: 2;
+  transform: translate(0, -100%);
+  list-style-type: none;
+  color: white;
+  background-color: #121212;
+  border: 1px solid red;
+}
+
+.search-list li {
+
+} */
+
 .search {
   margin-top: 10px;
   padding: 0px;
@@ -245,11 +264,8 @@ button {
   right: -2px;
   background-color: rgb(23, 106, 23);
 }
-#page-1 {
-  /* display: none; */
-}
+
 #page-2 {
-  /* display: flex; */
   display: none;
   flex-flow: column;
   align-items: center;
@@ -262,7 +278,7 @@ button {
 .correct-song {
   margin: auto;
   font-size: 40px;
-  width: 100px;
+  width: 45%;
   text-align: center;
   vertical-align: center;
 }
