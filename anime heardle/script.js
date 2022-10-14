@@ -4,8 +4,7 @@ const informationBtn = document.getElementById('information')
 const aboutBtn = document.getElementById('about')
 const overlay = document.getElementById('overlay')
 const helpPage = document.getElementById('help-page')
-const guesslist = document.getElementById('glist').getElementsByTagName("li")
-const loadingIndicator = document.querySelector('.loading-bar')
+const guessList = document.getElementById('glist').getElementsByTagName("li")
 const loadingBar = document.getElementsByClassName('loading-bar')[0]
 const currTime = document.querySelector('.curr-time')
 const maxTime = document.querySelector('.max-time')
@@ -36,6 +35,8 @@ let songIndex = 0
 const game = {currTime: null}
 
 let help = true
+
+let score = 0
 
 aboutBtn.addEventListener(('click'), () => {
     if (help == true) {
@@ -114,38 +115,62 @@ function end() {
 }
 
 skipBtn.addEventListener('click', () => {
-        totalTime += addedTime
-        timeInterval = 1/totalTime
-        guesslist[addedTime - 1].innerHTML = skip
-        addedTime++
-        if (addedTime > 6) {
-
-        }
-        // last skip
-        else if (addedTime === 6) {
-            skipBtn.innerHTML = `SKIP`
-            // goes to the next load bar line
-            currLoadLine = `loadline${addedTime}.style.left`
-            loadingIndicator.style.width = eval(currLoadLine)
-        }
-        else {
-            skipBtn.innerHTML = `SKIP (+${addedTime}s)`
-            currLoadLine = `loadline${addedTime}.style.left`
-            loadingIndicator.style.width = eval(currLoadLine)
-        }
-        if (isPlaying === true) {
-            const loadingWidth = parseFloat(getComputedStyle(loadingBar).getPropertyValue('--width')) || 0
-            loadingBar.style.setProperty('--width', loadingWidth + timeInterval)
-        }
+        guessList[addedTime - 1].innerHTML = skip
+        nextGuess()
 });
 
-submitBtn.addEventListener('click', () => {
-    console.log(searchbar.value)
+function nextGuess() {
+    totalTime += addedTime
+    timeInterval = 1/totalTime
+    addedTime++
+    if (addedTime > 6) {
+        correctAnswer()
+    }
+    // last skip
+    else if (addedTime === 6) {
+        skipBtn.innerHTML = `SKIP`
+        // goes to the next load bar line
+        currLoadLine = `loadline${addedTime}.style.left`
+        loadingBar.style.width = eval(currLoadLine)
+    }
+    else {
+        skipBtn.innerHTML = `SKIP (+${addedTime}s)`
+        currLoadLine = `loadline${addedTime}.style.left`
+        loadingBar.style.width = eval(currLoadLine)
+    }
+    if (isPlaying === true) {
+        const loadingWidth = parseFloat(getComputedStyle(loadingBar).getPropertyValue('--width')) || 0
+        loadingBar.style.setProperty('--width', loadingWidth + timeInterval)
+    }
+}
+
+function correctAnswer () {
     firstPage.style.display = 'none'
     secondPage.style.display = 'flex'
+    document.getElementsByClassName('correct-song')[0].innerHTML = 'Song: </br>' + songList[songIndex]
     if (isPlaying) {
         isPlaying = false
         end()
+    }
+    if (songIndex === songList.length - 1) {
+        nextBtn.innerHTML = 'Results'
+    }
+}
+
+submitBtn.addEventListener('click', () => {
+    if (searchbar.value !== '') {
+        if (searchbar.value.toLowerCase() === songList[songIndex].toLowerCase()) {
+            correctAnswer()
+            score++
+        }
+        else if (addedTime > 6){
+            correctAnswer()
+        }
+        else {
+            guessList[addedTime - 1].innerHTML = searchbar.value
+            nextGuess()
+            searchbar.value = ''
+        }
     }
 })
 
@@ -155,6 +180,10 @@ nextBtn.addEventListener('click', () => {
         reset()
         firstPage.style.display = 'block'
         secondPage.style.display = 'none'
+    }
+    else {
+        document.getElementsByClassName('correct-song')[0].innerHTML = `You guessed ${score} / ${songIndex} correctly </br> </br> Thanks for playing!!!`
+        nextBtn.style.display = 'none'
     }
 })
 
@@ -166,8 +195,9 @@ function reset() {
     let timeInterval = 1/totalTime
     const game = {currTime: null}
     loadingBar.style.width = '6.25%'
-    for (let i = 0; i < guesslist.length; i++)
+    for (let i = 0; i < guessList.length; i++)
     {
-        guesslist[i].innerHTML = ''
+        guessList[i].innerHTML = ''
     }
+    searchbar.value = ''
 }
